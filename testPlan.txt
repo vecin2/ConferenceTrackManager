@@ -1,0 +1,77 @@
+Parsing input
+^Writing Fast Tests Against Enterprise Rails 60min --> 
+	Title: Writing Fast Tests Against Enterprise Rails
+	Duration: 60
+^Rails for Python Developers lightning -->
+	Title: Rails for Python Developers
+	Duration: 5
+^ Parse a list of talks
+ 	Writing Fast Tests Against Enterprise Rails 60min \n Overdoing it in Python 45min-->
+ 	Title ="Writing Fast Tests Against Enterprise Rails 60min"
+ 	Duration=60
+ 	Title ="Overdoing it in Python"
+ 	Duration =45
+
+-Scheduling
+	Day Constraints
+	9:00 to 12 and 13 to 16 min or to 15 max
+	
+	Constraint Max time 
+	Constraint Minimum time
+	Constraint 3 hours max time
+	Constraint 3 hours min time
+	Constraint 4 hours max time
+	Giving a set of tracks check if satisfied container specification
+	   -Constraint: 180, MAX_TIME
+		^Add talk: 60 --> OK
+		^Add talks: 60 + 60 +80 --> KO
+		^Add session: 60 + 60 + 60 --> OK
+		
+		Constraint: 180, MIN_TIME
+		^Add sessions: 60 + 60 + 80 --> OK
+		^Add sessions: 60 + 60 --> KO
+		^Add session: 60 + 60 +60 --> OK
+		
+		Constraint:(180, MIN_TIME) && Constraint(240, MAX_TIME)
+		^Add session: 200 --> OK
+		^Add session: 180 --> OK
+		^Add session: 240 --> OK
+		^Add session: 179 --> KO
+		^Add session: 241 --> KO 
+  Scheduling
+ 	 Session Scheduling
+ 	  addTalkWithValidConstraint
+ 	  addTalkWithInvalidConstraint
+ 	  addMultipleTalksAddsDuration
+ 	  printsession
+ 	Track scheduling
+ 	  schedule a talk schedules it in the next earliest free spot
+ 	  	schedules with no talk schedules it at first session start time
+ 	  	schedule with a second talk schedules in the first session after first talk
+ 	  	schedule which breaks first session constraint, schedules it in the second session
+ 	  	schedule a talk which breaks both session constraint, returns false
+ 	Conference scheduling
+ 		Schedule talks in order
+ 		Reschedule when needed
+ 		 	
+ 
+ -Writing output
+ 	Write talk - 
+ 	  Title: Writing Fast Tests Against Enterprise Rails
+	  Duration: 60   	-->
+	  ^Writing Fast Tests Against Enterprise Rails 60min"
+ 	^Write Session
+ 	  ^session starts at 9 with two talks
+ 	  	09:00AM Writing Fast Tests Against Enterprise Rails 60min
+	  	10:00AM Overdoing it in Python 45min
+	  ^session no talks return empty
+	Write track
+	   no sessions --> empty
+	   one session --> Track Name \n write one session
+	   two sessions -->trach Name \n write morning session + one hour lunch + afternoon session
+	Write conference
+	   no tracks --> empty
+	   One track --> Track
+	   Two tracks --> Track 1 + \n Track 2    
+		
+		
